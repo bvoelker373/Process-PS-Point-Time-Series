@@ -5,8 +5,8 @@
 import pandas
   
 # reading the files
-#f1 = pandas.read_excel("OR_PS_Within_LS.xls")
-#f2 = pandas.read_excel("TS_PRE.xlsx")
+f1 = pandas.read_excel("OR_PS_Within_LS.xls")
+f2 = pandas.read_excel("TS_PRE.xlsx")
   
 # merging the files
 f3 = f1.merge(f2, on = "Point_ID", how = "left")
