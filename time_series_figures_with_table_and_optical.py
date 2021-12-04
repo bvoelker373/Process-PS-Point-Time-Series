@@ -67,7 +67,6 @@ data_subset = data[['FAIL_TYPE', 'TYPE_MOVE', 'CONFIDENCE', 'AGE',
 #########################################
 #               Plotting                #
 #########################################
-
 for index, row in timeseries.iterrows():
     print('Plotting: ', index)
     
