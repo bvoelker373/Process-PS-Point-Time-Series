@@ -131,7 +131,7 @@ for index, row in timeseries.iterrows():
              linestyle='None', markersize = 4)
     
     ax2.set_xlabel("Date")
-    ax2.set_ylabel("Displacement [mm?]")
+    ax2.set_ylabel("Displacement [mm]")
     
     ###########################
     # Axis 3: Data table
