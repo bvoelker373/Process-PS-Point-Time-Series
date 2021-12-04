@@ -93,7 +93,6 @@ for index, row in timeseries.iterrows():
     #   but these will be buffered later to create the image bounds 
     minx, miny, maxx, maxy = points_gdf_proj.loc[[index]].geometry.total_bounds
     
-    
     # Plot the data
     landslide_gdf.plot(
         ax = ax1,
