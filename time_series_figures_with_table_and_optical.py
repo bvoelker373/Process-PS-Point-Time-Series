@@ -75,7 +75,6 @@ for index, row in timeseries.iterrows():
     fig.set_dpi(300)
     fig.suptitle("Point {}".format(data['Point_ID'][index]))
     
-    
     ax1 = plt.subplot2grid((12,12), (0,0), colspan=6, rowspan = 6) # left
     ax2 = plt.subplot2grid((12,12), (0,6), colspan=6, rowspan = 6) # right
     ax3 = plt.subplot2grid((12,12), (6,0), rowspan = 3, colspan=12) # bottom 
