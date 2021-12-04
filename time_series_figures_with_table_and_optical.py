@@ -37,9 +37,11 @@ points_gdf_proj = points_gdf.to_crs(landslide_gdf.crs)
 timeseries = data.filter(regex='20')
 seperator = '_'
 
+# Remove suffix from dates (e.g. 20171201_VV_25 --> 20171201).
 timeseries.columns = timeseries.columns.str.split(seperator, 1)
 timeseries.columns = [date[0] for date in timeseries.columns]
 
+# Format dates.
 x = pd.DataFrame(timeseries.columns, columns = ['Time'])
 x['Time'] = pd.to_datetime(x['Time'], format='%Y%m%d', errors='coerce')
 
@@ -65,13 +67,6 @@ data_subset = data[['FAIL_TYPE', 'TYPE_MOVE', 'CONFIDENCE', 'AGE',
 #########################################
 #               Plotting                #
 #########################################
-
-"""To Do:
-Change from to explicity defining subplots with GridSpec,
-defining relative sizes of plots so the white space on the bottom is removed. 
-
-Or, increase the number of subplots in subplot2grid
-"""
 
 for index, row in timeseries.iterrows():
     print('Plotting: ', index)
