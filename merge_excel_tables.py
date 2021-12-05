@@ -1,4 +1,5 @@
-"""from https://www.geeksforgeeks.org/joining-excel-data-from-multiple-files-using-python-pandas/"""
+"""Merges two excel files by a common key, with a 'left join' by default. Resulting table is saved as CSV.
+from https://www.geeksforgeeks.org/joining-excel-data-from-multiple-files-using-python-pandas/"""
 
 # importing the module
 import pandas
