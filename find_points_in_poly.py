@@ -3,7 +3,6 @@ Final attribute table is dumped to Excel file."""
 
 # Import system modules
 import arcpy
-#import os
 
 # Overwrite existing output.
 arcpy.env.overwriteOutput = True
