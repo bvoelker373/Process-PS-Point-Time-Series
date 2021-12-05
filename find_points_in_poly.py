@@ -1,4 +1,5 @@
-"""ArcPy script to find points within polygons, and join their attribute tables"""
+"""ArcPy script to find points within polygons, and join their attribute tables.
+Final attribute table is dumped to Excel file."""
 
 # Import system modules
 import arcpy
