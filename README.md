@@ -5,4 +5,4 @@
 
 
 ### Example output:
-![101794_24](https://user-images.githubusercontent.com/94650022/144731943-66d107e2-64d2-4b4d-ba96-484a513f0963.png)
+![19525_5](https://user-images.githubusercontent.com/94650022/144731985-cbedcf90-b4a1-4721-ad5c-617c08a20aa8.png)
