@@ -1,6 +1,5 @@
 """from https://www.geeksforgeeks.org/joining-excel-data-from-multiple-files-using-python-pandas/"""
 
-
 # importing the module
 import pandas
   
