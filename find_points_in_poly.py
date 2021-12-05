@@ -2,24 +2,10 @@
 
 # Import system modules
 import arcpy
-import os
+#import os
 
 # Overwrite existing output.
 arcpy.env.overwriteOutput = True
-
-# Create intermediate data directory if it doesn't exist.
-directory = "data_deprecated"
-try:
-    os.mkdir(directory)
-except: 
-    pass
-
-# Create output directory if it doesn't exist.
-directory = "out"
-try:
-    os.mkdir(directory)
-except: 
-    pass
 
 # Absolute directory of workspace for ArcGIS.
 workspace = r'C:\Users\Brandon\Documents\persistent_scatter\data'
@@ -31,7 +17,6 @@ polygons = r"C:\Users\Brandon\Documents\persistent_scatter\data\OR_landslides_co
 spatial_ref = arcpy.Describe(polygons).spatialReference
 transformations = arcpy.ListTransformations("WGS 1984", spatial_ref)
 
-# long_filed = LONG
 
 try:
     # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
@@ -40,24 +25,43 @@ try:
     pts = arcpy.management.XYTableToPoint(XY_table, "ID_LAT_LON.shp",
                                           "LON", "LAT",
                                           "#", "#")
-    print('XY Table Imported as Points')
+    print('\nXY Table Imported as Points')
     
     pts_proj = arcpy.management.Project("ID_LAT_LON.shp", "ID_LAT_LON_proj.shp",
                                         spatial_ref, transformations[0],
                                         "#", "#",
                                         "#", "#")
-    print('Points Projected')
+    print('\nPoints Projected')
     
     
+    clip = arcpy.analysis.Clip("ID_LAT_LON_proj.shp", polygons,
+                               "ID_LAT_LON_proj_clip.shp", "#")
+    print('\nPoints Clipped to Polygons')
     
     
-    print('Points Clipped to Polygons')
+    poly_containing_pts = arcpy.management.SelectLayerByLocation(
+            polygons, "CONTAINS",
+            "ID_LAT_LON_proj_clip.shp", "#",
+            "#", "#")
+    print('\nPolygons Containing Points Selected')
     
+    # If features matched criteria, write them to a new feature class
+    matchcount = int(arcpy.GetCount_management(poly_containing_pts)[0]) 
+    if matchcount == 0:
+        print('WARNING: No polygons contained any point features.')
+    else:
+        arcpy.CopyFeatures_management(poly_containing_pts,
+                                      "OR_Landslides_Containing_PS_Points.shp")
+        print('\nPolygons Containing Points Exported as New Shapefile')
     
-    print('Polygons Containing Points Selected')
-    
-    
-    print('Points Spatially Joined to Polygons')
+    sJoin = arcpy.analysis.SpatialJoin(
+            "ID_LAT_LON_proj_clip.shp",
+            "OR_Landslides_Containing_PS_Points.shp",
+            "OR_PS_Within_LS.shp",
+            "JOIN_ONE_TO_MANY",
+            "#", "#", "#", "#", "#"
+            )
+    print('\nPoint Attributes Spatially Joined with Polygon Attributes')
     
             
 except arcpy.ExecuteError:
