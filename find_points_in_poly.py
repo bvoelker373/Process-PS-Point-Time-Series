@@ -13,7 +13,7 @@ workspace = r'C:\Users\Brandon\Documents\persistent_scatter\data'
 # Initial parameters.
 XY_table = r"ID_LAT_LON.csv"
 polygons = r"C:\Users\Brandon\Documents\persistent_scatter\data\OR_landslides_corr_ZS.shp"
-
+out_path = r"C:\Users\Brandon\Documents\persistent_scatter"
 spatial_ref = arcpy.Describe(polygons).spatialReference
 transformations = arcpy.ListTransformations("WGS 1984", spatial_ref)
 
@@ -63,7 +63,12 @@ try:
             )
     print('\nPoint Attributes Spatially Joined with Polygon Attributes')
     
-            
+    tableExport = arcpy.conversion.TableToTable(
+            "OR_PS_Within_LS.shp", out_path, "OR_PS_Within_LS.xls",
+            "#", "#", "#")
+    print('\n Table of Point Data (with attached Polygon attributes) Exported to Excel')
+    
+    
 except arcpy.ExecuteError:
     # If any error occurred when running the tool, print the messages
     print(arcpy.GetMessages())
