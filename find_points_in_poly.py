@@ -65,7 +65,7 @@ try:
     
     tableExport = arcpy.conversion.TableToExcel(
             "OR_PS_Within_LS.shp", out_path + "OR_PS_Within_LS.xls")
-    print('\n>>>Table of Point Data (with attached Polygon attributes) Exported to Excel')
+    print('\n>>> Table of Point Data (with attached Polygon attributes) Exported to Excel')
     
     
 except arcpy.ExecuteError:
