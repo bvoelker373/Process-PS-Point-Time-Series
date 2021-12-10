@@ -64,7 +64,7 @@ try:
     print('\nPoint Attributes Spatially Joined with Polygon Attributes')
     
     tableExport = arcpy.conversion.TableToExcel(
-            "OR_PS_Within_LS.shp", out_path + "OR_PS_Within_LS.xls")
+            "OR_PS_Within_LS.shp", out_path + "\OR_PS_Within_LS.xls")
     print('\n>>> Table of Point Data (with attached Polygon attributes) Exported to Excel')
     
     
