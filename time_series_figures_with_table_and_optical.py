@@ -108,7 +108,7 @@ for index, row in timeseries.iterrows():
         )
     
     # Center around the point,and set extent with buffer around the point
-    buffer = 1000
+    buffer = 1000 # Feet -- units of CRS
     ax1.set_xlim(minx - buffer, maxx + buffer)
     ax1.set_ylim(miny - buffer, maxy + buffer)
     
